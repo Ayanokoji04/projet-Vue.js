@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Vue.js</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.24.3/vuedraggable.umd.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="presentation">
+            <h1>Bienvenue sur notre site dédié au vote interactif pour des films</h1>
+            <p>Notre plateforme offre une expérience unique où vous pouvez voter pour vos films préférés de manière
+                interactive et engageante. Que vous soyez un cinéphile passionné ou simplement à la recherche de
+                nouvelles
+                recommandations, notre application vous permet de découvrir et de soutenir les films que vous aimez.</p>
+        </div>
+
+    </header>
+
+    <div id="app">
+        <div class="search">
+            <h1>Films par catégorie avec Vue.js et l'API TMDb</h1>
+
+            <!-- Sélecteur de catégories -->
+            <select class="form-select" v-model="selectedGenre" @change="searchMoviesByGenre" style="width: 250px;">
+                <option value="">Sélectionner une catégorie</option>
+                <option v-for="genre in genres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
+            </select>
+        </div>
+
+
+        <!-- Résultats de la recherche -->
+        <div id="searchResults" class="container-movies">
+            <div v-for="movie in movies" :key="movie.id" class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ movie.title }}</h2>
+                    <img v-if="movie.poster_path" :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+                    <p class="card-text">{{ movie.overview }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.24.3/vuedraggable.umd.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
